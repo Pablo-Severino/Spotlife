@@ -1,0 +1,11 @@
+.user {
+  position: absolute;
+  width: 169px;
+  height: 33px;
+  left: 85%;
+  top: 5%;
+
+  background: #292929;
+  border-radius: 50px;
+  cursor: pointer;
+}
