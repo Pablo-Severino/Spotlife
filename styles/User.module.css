@@ -1,11 +1,36 @@
 .user {
   position: absolute;
   width: 169px;
-  height: 33px;
+  height: 35px;
   left: 85%;
   top: 5%;
+
+  display: flex;
+  gap: 8%;
+  align-items: center;
 
   background: #292929;
   border-radius: 50px;
   cursor: pointer;
+}
+
+.users {
+  width: 30px;
+  height: 30px;
+  
+  border-radius: 100%;
+  background-color: #3f3f3f;
+  border: 1px solid #3f3f3f;
+
+  margin-top: -.1vw;
+  margin-left: .5vw;
+}
+
+.username {
+
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+
+  margin-top: -.1vw;
 }

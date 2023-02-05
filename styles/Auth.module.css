@@ -1,0 +1,58 @@
+.main {
+  width: 100%;
+  height: 100vh;
+  background-color: #131313;
+}
+
+.illustration {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  left: 37%;
+  top: 5%;
+}
+
+.loginButton {
+  position: absolute;
+  width: 13%;
+  height: 46px;
+  left: 44%;
+  top: 65%;
+
+  background: #BD93F9;
+  border-radius: 50px;
+  color: #ffffff;
+
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+}
+
+.logotipo {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  left: 5%;
+  top: 8px;
+
+  transform: rotate(0.59deg);
+}
+
+.title {
+  position: absolute;
+  width: 131px;
+  height: 17px;
+  left: 25%;
+  top: 14px;
+
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #FFFFFF;
+}

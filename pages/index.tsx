@@ -17,8 +17,8 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <StatusBar />
-        <EndBar />
         <User />
+        <EndBar />
       </main>
     </>
   )
