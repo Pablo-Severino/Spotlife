@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
     <React.Fragment>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="Come and discover the new music site" />
+        <meta name="description" content="Come and discover the new music site." />
         <meta name="author" content="Pablo Severino" />
         <meta name="robots" content="index, nofollow" />
         <link rel="shortcut icon" href="/120x120.svg" type="image/x-icon" />
