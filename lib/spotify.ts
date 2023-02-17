@@ -15,15 +15,16 @@ const scopes = [
   "user-read-currently-playing",
   "user-read-recently-played",
   "user-follow-read",
-].join(',');
+].join(",");
 
 const params = {
   scopes: scopes,
-}
+};
 
 const queryParamString = new URLSearchParams(params);
 
-const LOGIN_URL = "https://accounts.spotify.com/authorize?" + queryParamString.toString();
+const LOGIN_URL =
+  "https://accounts.spotify.com/authorize?" + queryParamString.toString();
 
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.NEXT_PUBLIC_CLIENT_ID,

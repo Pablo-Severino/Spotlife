@@ -1,13 +1,18 @@
 {
   "compilerOptions": {
     "target": "es2021",
-    "lib": ["dom", "dom.iterable", "esnext", "ES2021"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext",
+      "ES2021"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
-    "esModuleInterop": false,
+    "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
@@ -15,6 +20,13 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "@types/heroicons__react.d.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "@types/heroicons__react.d.ts"
+, "components/Songs.tsx", "components/Song.tsx"  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
