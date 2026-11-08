@@ -19,9 +19,13 @@ export default function Song({
   const playSong = () => {
     setCurrentTrackId(track.track.id);
     setIsPlaying(true);
-    spotifyApi.play({
-      uris: [track.track.uri],
-    });
+    spotifyApi
+      .play({
+        uris: [track.track.uri],
+      })
+      .catch((err) => {
+        console.log("Play error (make sure Spotify is open on an active device):", err);
+      });
   };
 
   return (

@@ -24,6 +24,9 @@ function Sidebar() {
     if (spotifyApi.getAccessToken()) {
       spotifyApi.getUserPlaylists().then((data) => {
         setPlaylist(data.body.items);
+        if (!playlistId && data.body.items.length > 0) {
+          setPlaylistId(data.body.items[0].id);
+        }
       });
     }
   }, [session, spotifyApi]);

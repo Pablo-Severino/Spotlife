@@ -2,7 +2,7 @@ import { useSession } from "next-auth/react";
 import useSpotify from "../hooks/useSpotify";
 import { useRecoilState } from "recoil";
 import { currentTrackIdState, isPlayingState } from "../atoms/songAtom";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import useSongInfo from "../hooks/useSongInfo";
 import {
   HeartIcon,
@@ -26,42 +26,57 @@ function Player() {
     useRecoilState(currentTrackIdState);
   const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
   const [volume, setVolume] = useState(50);
+  const initialVolumeRender = useRef(true);
 
   const songInfo = useSongInfo();
 
   const fetchCurrentSong = () => {
     if (!songInfo) {
-      spotifyApi.getMyCurrentPlayingTrack().then((data) => {
-        // console.log("Now playing: ", data.body?.item);
-        setCurrentTrackId(data.body?.item?.id);
+      spotifyApi
+        .getMyCurrentPlayingTrack()
+        .then((data) => {
+          setCurrentTrackId(data.body?.item?.id);
 
-        spotifyApi.getMyCurrentPlaybackState().then((data) => {
-          setIsPlaying(data.body?.is_playing);
-        });
-      });
+          spotifyApi
+            .getMyCurrentPlaybackState()
+            .then((data) => {
+              setIsPlaying(data.body?.is_playing);
+            })
+            .catch((err) => console.log("Current playback state error:", err));
+        })
+        .catch((err) => console.log("Current playing track error:", err));
     }
   };
 
   const handlePlayPause = () => {
-    spotifyApi.getMyCurrentPlaybackState().then((data) => {
-      if (data.body.is_playing) {
-        spotifyApi.pause();
-        setIsPlaying(false);
-      } else {
-        spotifyApi.play();
-        setIsPlaying(true);
-      }
-    });
+    spotifyApi
+      .getMyCurrentPlaybackState()
+      .then((data) => {
+        if (data.body?.is_playing) {
+          spotifyApi.pause().catch((err) => console.log("Pause error:", err));
+          setIsPlaying(false);
+        } else {
+          spotifyApi.play().catch((err) => console.log("Play error:", err));
+          setIsPlaying(true);
+        }
+      })
+      .catch((err) => console.log("Playback error:", err));
   };
 
   useEffect(() => {
     if (spotifyApi.getAccessToken() && !currentTrackId) {
-      // fetch the song info
+      fetchCurrentSong();
+      setVolume(50);
     }
-  }, [currentTrackIdState, spotifyApi, session]);
+  }, [currentTrackId, spotifyApi, session]);
 
   useEffect(() => {
-    if (volume > 0 && volume < 100) {
+    if (initialVolumeRender.current) {
+      initialVolumeRender.current = false;
+      return;
+    }
+
+    if (volume >= 0 && volume <= 100) {
       debouncedAdjustVolume(volume);
     }
   }, [volume]);
