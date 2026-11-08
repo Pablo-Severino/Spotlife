@@ -9,9 +9,29 @@ function useSongInfo() {
     useRecoilState(currentTrackIdState);
   const [songInfo, setSongInfo] = useState(null);
 
+  // useEffect(() => {
+  //   const fetchSongInfo = async () => {
+  //     if (currentIdTrack) {
+  //       const trackInfo = await fetch(
+  //         `https://api.spotify.com/v1/tracks/${currentIdTrack}`,
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer ${spotifyApi.getAccessToken()}`,
+  //           },
+  //         }
+  //       ).then((res) => res.json());
+
+  //       setSongInfo(trackInfo);
+  //     }
+  //   };
+
+  //   fetchSongInfo();
+  // }, [currentIdTrack, spotifyApi]);
+
   useEffect(() => {
     const fetchSongInfo = async () => {
-      if (currentIdTrack) {
+      // Check if both track id AND token exist
+      if (currentIdTrack && spotifyApi.getAccessToken()) {
         const trackInfo = await fetch(
           `https://api.spotify.com/v1/tracks/${currentIdTrack}`,
           {
@@ -24,7 +44,7 @@ function useSongInfo() {
         setSongInfo(trackInfo);
       }
     };
-
+    
     fetchSongInfo();
   }, [currentIdTrack, spotifyApi]);
 

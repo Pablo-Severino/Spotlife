@@ -68,6 +68,17 @@ export default NextAuth({
       return await refreshAccessToken(token);
     },
 
+    // async session({ session, token }) {
+    //   //@ts-ignore
+    //   session.user.accessToken = token.accessToken;
+    //   //@ts-ignore
+    //   session.user.refreshToken = token.refreshToken;
+    //   //@ts-ignore
+    //   session.user.username = token.username;
+
+    //   return session;
+    // },
+
     async session({ session, token }) {
       //@ts-ignore
       session.user.accessToken = token.accessToken;
@@ -75,7 +86,8 @@ export default NextAuth({
       session.user.refreshToken = token.refreshToken;
       //@ts-ignore
       session.user.username = token.username;
-
+      //@ts-ignore
+      session.error = token.error; // <-- ADD THIS
       return session;
     },
   },
