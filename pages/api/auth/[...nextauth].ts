@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import SpotifyProvider from "next-auth/providers/spotify";
-import spotifyApi, { LOGIN_URL } from "../../../lib/spotify.ts";
+import spotifyApi, { LOGIN_URL } from "../../../lib/spotify";
 
 import { JWT } from 'next-auth/jwt'
 
@@ -16,7 +16,8 @@ async function refreshAccessToken(token: JWT) {
       ...token,
       accessToken: refreshedToken.access_token,
       accessTokenExpires: Date.now() + refreshedToken.expires_in * 1000, // = 1 hour as 3600 returns from spotify API
-      refreshToken: refreshedToken.refresh_token ?? token.refresh_token,
+      // refreshToken: refreshedToken.refresh_token ?? token.refresh_token,
+      refreshToken: refreshedToken.refresh_token ?? token.refreshToken,
       // Replace if now one came back elese fall back to old refresh token
     };
   } catch (error) {
