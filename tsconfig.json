@@ -13,7 +13,7 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "NodeNext",
+    "module": "esnext",
     "moduleResolution": "NodeNext",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -24,8 +24,10 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "@types/heroicons__react.d.ts"
-, "components/Songs.tsx", "components/Song.tsx"  ],
+    "@types/heroicons__react.d.ts",
+    "components/Songs.tsx",
+    "components/Song.tsx"
+  ],
   "exclude": [
     "node_modules"
   ]
